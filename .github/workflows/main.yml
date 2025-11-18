@@ -31,7 +31,8 @@ jobs:
 
       - name: Create RDP User with Secure Password
         run: |
-          New-LocalUser -Name "ozar" -Password "ABdo12!@" -AccountNeverExpires
+          $pw = ConvertTo-SecureString ABdo12!@ -AsPlainText -Force
+          New-LocalUser -Name "ozar" -Password $pw -AccountNeverExpires
           Add-LocalGroupMember -Group "Administrators" -Member "ozar"
           Add-LocalGroupMember -Group "Remote Desktop Users" -Member "ozar"
           
